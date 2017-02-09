@@ -49,8 +49,8 @@ function registerRunner() {
   fi
 
   gitlab-ci-multi-runner register --config /etc/gitlab-runner/config.toml --non-interactive \
-  --url $GITLAB_CI_URI --registration-token $REGISTER_TOKEN --tag-list "$RUNNER_TAGS" \
-  --name $RUNNER_NAME --executor docker+machine
+  --url $GITLAB_CI_URI --registration-token $REGISTER_TOKEN \
+  --name $RUNNER_NAME --executor docker+machine --docker-image alpine
 
   local TOKEN=$(sed -n 's/.*token = "\(.*\)".*/\1/p' /etc/gitlab-runner/config.toml)
   echo "Runner registered with token $TOKEN"
